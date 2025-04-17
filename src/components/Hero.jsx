@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaRocket, FaBolt, FaFire } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const containerVariants = {
@@ -90,20 +91,24 @@ const Hero = () => {
               className="flex flex-wrap gap-4"
               variants={itemVariants}
             >
-              <motion.button 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full flex items-center gap-2 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaRocket /> See Our Projects
-              </motion.button>
-              <motion.button 
-                className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full flex items-center gap-2 border border-orange-500 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaBolt /> Meet The Team
-              </motion.button>
+              <Link to="/projects">
+                <motion.button 
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full flex items-center gap-2 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaRocket /> See Our Projects
+                </motion.button>
+              </Link>
+              <Link to="/team">
+                <motion.button 
+                  className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-full flex items-center gap-2 border border-orange-500 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaBolt /> Meet The Team
+                </motion.button>
+              </Link>
             </motion.div>
           </div>
 
