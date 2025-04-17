@@ -26,68 +26,67 @@ const Team = () => {
 
   const coreTeam = [
     {
-      name: "Ayush",
-      role: "Team Lead & Frontend Wizard",
-      image: "https://i.pravatar.cc/300?img=11",
-      bio: "Turns caffeine into code faster than you can say 'React re-render'. Has strong opinions about tabs vs spaces.",
+      name: "Ayush Sharma",
+      role: "Team Lead & CodingPaglu",
+      image: "https://avatars.githubusercontent.com/u/69210117?v=4",
+      bio: "Writes Code In HTML",
       quote: "Why debug when you can just add more features?",
-      github: "https://github.com/ayush",
-      twitter: "https://twitter.com/ayush",
-      linkedin: "https://linkedin.com/in/ayush",
-      devto: "https://dev.to/ayush",
-      skills: ["React", "NextJS", "Tailwind", "Procrastination"]
+      github: "https://github.com/cyberboyayush",
+      twitter: "https://twitter.com/cyberboyayush",
+      linkedin: "https://linkedin.com/in/cyberboyayush",
+      skills: ["React", "NextJS", "Tailwind", "Procrastination", "Gemini", "Appwrite"]
     },
     {
-      name: "Rahul",
-      role: "Backend Ninja & API Whisperer",
-      image: "https://i.pravatar.cc/300?img=12",
-      bio: "Can solve complex backend issues while sleeping. Never met a database he couldn't optimize.",
+      name: "Vranda Garg",
+      role: "Co Team Lead & NinniPaglu",
+      image: "https://avatars.githubusercontent.com/u/166229165?v=4",
+      bio: "She can sleep 14 hours a day.",
       quote: "It's not a bug, it's an undocumented feature!",
-      github: "https://github.com/rahul",
-      twitter: "https://twitter.com/rahul",
-      linkedin: "https://linkedin.com/in/rahul",
-      devto: "https://dev.to/rahul",
-      skills: ["Node.js", "Firebase", "MongoDB", "Making coffee"]
+      github: "https://github.com/vrandaagarg",
+      twitter: "https://twitter.com/vrandaagarg",
+      linkedin: "https://linkedin.com/in/vrandaagarg",
+      skills: ["Node.js", "Firebase", "React", "Making coffee"]
     }
   ];
 
   const teamMembers = [
     {
-      name: "Priya",
-      role: "UI/UX Designer",
-      image: "https://i.pravatar.cc/300?img=5",
-      bio: "Makes our apps look prettier than a sunset. Believes every pixel matters.",
+      name: "Atishay Jain",
+      role: "Testing and Design",
+      image: "https://avatars.githubusercontent.com/u/170084012?v=4",
+      bio: "Bro makes the best PPT using Canva.",
       quote: "Design is intelligence made visible.",
-      github: "https://github.com/priya",
-      skills: ["Figma", "Illustrator", "CSS Wizardry"]
+      github: "https://github.com/atishay-jain04",
+      skills: ["Figma", "VS Code", "Canva"]
     },
     {
-      name: "Vikram",
-      role: "AI Specialist",
-      image: "https://i.pravatar.cc/300?img=15",
-      bio: "Teaches AI to make memes. Occasionally argues with chatbots and wins.",
+      name: "Raghav Gaba",
+      role: "Frontend Dev & ChatGpt Plus User",
+      image: "https://avatars.githubusercontent.com/u/158083556?v=4",
+      bio: "Bro uses ChatGPT for everything.",
+      quote: "I asked ChatGPT to write this bio.",
       quote: "AI is just spicy if-else statements.",
-      twitter: "https://twitter.com/vikram",
-      skills: ["Python", "TensorFlow", "Gemini", "Groq"]
+      github: "https://github.com/raghavvvgaba",
+      skills: ["Python", "React", "TailwindCSS"]
     },
     {
-      name: "Neha",
-      role: "Mobile Dev & Bug Hunter",
-      image: "https://i.pravatar.cc/300?img=23",
-      bio: "Could find a needle in a haystack, especially if the needle is a race condition.",
-      quote: "It works on my machine... so we're shipping my machine!",
-      linkedin: "https://linkedin.com/in/neha",
-      skills: ["React Native", "Flutter", "Debugging"]
+      name: "Priyansh Jha",
+      role: "PPT Generator and GPT User",
+      image: "https://avatars.githubusercontent.com/u/174599206?v=4",
+      bio: "I can make a PPT in 5 minutes.",
+      quote: "Canva is my best friend.",
+      github: "https://github.com/priyanshjhaa",
+      skills: ["ChatGPT", "Canva", "Instagram Reels"]
     },
     {
-      name: "Arjun",
-      role: "DevOps & Infrastructure",
-      image: "https://i.pravatar.cc/300?img=19",
-      bio: "Believes Docker solves everything. Has nightmares about unoptimized CI/CD pipelines.",
-      quote: "I automate stuff so I can be lazy efficiently.",
-      github: "https://github.com/arjun",
-      skills: ["Docker", "Kubernetes", "AWS", "Meme Creation"]
-    }
+      name: "Raghav Katta",
+      role: "Frontend Dev",
+      image: "https://avatars.githubusercontent.com/u/165624720?v=4",
+      bio: "Frontend Dev with a passion for memes.",
+      quote: "Copilot is my best friend.",
+      github: "https://github.com/raghavxkatta",
+      skills: ["React", "Tailwind", "Github"]
+    },
   ];
 
   const renderSocialLinks = (member) => {
