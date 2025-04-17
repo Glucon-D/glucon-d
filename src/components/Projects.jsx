@@ -113,57 +113,99 @@ const Projects = () => {
 const ProjectCard = ({ project, variants }) => {
   return (
     <motion.div 
-      className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-orange-500 transition-all"
+      className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl overflow-hidden border border-gray-700 hover:border-orange-500 transition-all shadow-xl"
       variants={variants}
-      whileHover={{ y: -10 }}
+      whileHover={{ 
+        y: -12, 
+        boxShadow: "0 25px 30px -12px rgba(249, 115, 22, 0.3)",
+        scale: 1.02
+      }}
     >
-      <div className="relative h-60 overflow-hidden">
-        <img 
+      <div className="relative h-60 overflow-hidden group">
+        <motion.img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700"
+          whileHover={{ scale: 1.1 }}
         />
-        <div className="absolute top-0 left-0 bg-orange-500 py-1 px-3 rounded-br">
-          <div className="flex items-center gap-1">
-            <FaMedal />
-            <span className="text-xs font-semibold">{project.achievement}</span>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        {project.achievement && (
+          <div className="absolute top-3 left-3 bg-gradient-to-r from-orange-500 to-orange-600 py-1.5 px-4 rounded-full shadow-lg transform -rotate-3">
+            <div className="flex items-center gap-1.5">
+              <FaMedal className="text-yellow-300" />
+              <span className="text-xs font-bold text-white">{project.achievement}</span>
+            </div>
           </div>
-        </div>
-      </div>
-      
-      <div className="p-6">
-        <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-        <p className="text-gray-400 mb-4">{project.description}</p>
+        )}
         
-        <div className="flex flex-wrap gap-2 mb-5">
-          {project.tags.map((tag, index) => (
-            <span 
-              key={index} 
-              className="text-xs bg-gray-700 text-gray-300 py-1 px-3 rounded-full"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        
-        <div className="flex justify-between gap-4 mt-auto">
+        <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
           <motion.a 
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-gray-700 hover:bg-gray-600 py-2 rounded flex items-center justify-center gap-2 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="bg-gray-800/80 backdrop-blur-sm hover:bg-gray-700 p-2 rounded-full flex items-center justify-center transition-colors"
+            whileHover={{ scale: 1.2, rotate: 10 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <FaGithub /> GitHub
+            <FaGithub className="text-white" />
           </motion.a>
           <motion.a 
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-orange-500 hover:bg-orange-600 py-2 rounded flex items-center justify-center gap-2 transition-colors"
+            className="bg-orange-500/80 backdrop-blur-sm hover:bg-orange-600 p-2 rounded-full flex items-center justify-center transition-colors"
+            whileHover={{ scale: 1.2, rotate: -10 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <FaExternalLinkAlt className="text-white" />
+          </motion.a>
+        </div>
+      </div>
+      
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-orange-300">{project.title}</h3>
+          <motion.div 
+            className="flex items-center px-2 py-1 bg-gray-700/50 rounded-full text-xs font-medium text-gray-300"
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          >
+            {project.category === "ai" ? "AI Project" : "Web App"}
+          </motion.div>
+        </div>
+        
+        <p className="text-gray-300 mb-4 text-sm">{project.description}</p>
+        
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.tags.map((tag, index) => (
+            <motion.span 
+              key={index} 
+              className="text-xs bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300 py-1 px-3 rounded-full shadow-sm"
+              whileHover={{ scale: 1.05, y: -2 }}
+            >
+              {tag}
+            </motion.span>
+          ))}
+        </div>
+        
+        <div className="flex justify-between gap-4 mt-6">
+          <motion.a 
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-md"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <FaGithub /> View Code
+          </motion.a>
+          <motion.a 
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 py-2.5 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-md"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             <FaExternalLinkAlt /> Live Demo
           </motion.a>
