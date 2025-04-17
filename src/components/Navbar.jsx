@@ -105,11 +105,11 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
-            <NavLink text="Home" to="/" />
-            <NavLink text="About" to="/about" />
-            <NavLink text="Tech Stack" to="/tech" />
-            <NavLink text="Projects" to="/projects" />
-            <NavLink text="Team" to="/team" />
+            <Link to="/" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300">Home</Link>
+            <Link to="/about" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300">About</Link>
+            <Link to="/tech" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300">Tech Stack</Link>
+            <Link to="/projects" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300">Projects</Link>
+            <Link to="/team" className="px-3 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors duration-300">Team</Link>
             
             <motion.button 
               className="ml-4 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-2 px-4 rounded-full text-sm flex items-center gap-1 shadow-md"
@@ -160,11 +160,11 @@ const Navbar = () => {
               <div className="container mx-auto px-6">
                 <div className="bg-gradient-to-b from-gray-800/90 to-gray-900/95 backdrop-blur-lg mt-2 py-4 px-4 rounded-xl border border-gray-700/30 shadow-xl divide-y divide-gray-700/30">
                   <div className="flex flex-col space-y-1 pb-3">
-                    <MobileNavLink text="Home" to="/" variants={itemVariants} />
-                    <MobileNavLink text="About" to="/about" variants={itemVariants} />
-                    <MobileNavLink text="Tech Stack" to="/tech" variants={itemVariants} />
-                    <MobileNavLink text="Projects" to="/projects" variants={itemVariants} />
-                    <MobileNavLink text="Team" to="/team" variants={itemVariants} />
+                    <Link to="/" className="block py-2.5 px-3 rounded-lg text-gray-300 hover:bg-gray-800/50 hover:text-white transition-colors duration-300">Home</Link>
+                    <Link to="/about" className="block py-2.5 px-3 rounded-lg text-gray-300 hover:bg-gray-800/50 hover:text-white transition-colors duration-300">About</Link>
+                    <Link to="/tech" className="block py-2.5 px-3 rounded-lg text-gray-300 hover:bg-gray-800/50 hover:text-white transition-colors duration-300">Tech Stack</Link>
+                    <Link to="/projects" className="block py-2.5 px-3 rounded-lg text-gray-300 hover:bg-gray-800/50 hover:text-white transition-colors duration-300">Projects</Link>
+                    <Link to="/team" className="block py-2.5 px-3 rounded-lg text-gray-300 hover:bg-gray-800/50 hover:text-white transition-colors duration-300">Team</Link>
                   </div>
                   
                   <motion.div 
@@ -210,53 +210,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </>
-  );
-};
-
-const NavLink = ({ text, to }) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-  
-  return (
-    <Link to={to} className="px-3 py-2">
-      <motion.div
-        className={`relative text-sm font-medium transition-colors duration-300 ${
-          isActive ? 'text-orange-400' : 'text-gray-300 hover:text-white'
-        }`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {text}
-        {isActive && (
-          <motion.div
-            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-orange-500 rounded-full"
-            layoutId="underline"
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          />
-        )}
-      </motion.div>
-    </Link>
-  );
-};
-
-const MobileNavLink = ({ text, to, variants }) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-  
-  return (
-    <Link to={to}>
-      <motion.div 
-        className={`block py-2.5 px-3 rounded-lg transition-colors duration-300 ${
-          isActive 
-            ? 'bg-orange-500/10 text-orange-400' 
-            : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
-        }`}
-        variants={variants}
-        whileTap={{ scale: 0.98 }}
-      >
-        {text}
-      </motion.div>
-    </Link>
   );
 };
 
