@@ -264,35 +264,36 @@ const Team = () => {
         </motion.div>
       </div>
       
-      {/* Popup */}
+      {/* Updated Popup with backdrop blur */}
       <AnimatePresence>
         {showPopup && (
           <motion.div 
-            className="fixed inset-0 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setShowPopup(false)}
           >
-            <motion.div 
-              className="absolute inset-0 bg-black bg-opacity-75"
-              onClick={() => setShowPopup(false)}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <div 
+              className="absolute inset-0 backdrop-blur-md bg-gray-900/60"
+              aria-hidden="true"
             />
             <motion.div 
-              className="bg-gray-800 rounded-xl p-6 max-w-md w-full relative z-10 border-2 border-orange-500"
+              className="bg-gray-800 rounded-xl p-5 md:p-8 w-full max-w-md relative z-10 border-2 border-orange-500 mx-4"
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => setShowPopup(false)} 
-                className="absolute top-4 right-4 text-gray-400 hover:text-white"
+                className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white transition-colors"
+                aria-label="Close"
               >
                 ×
               </button>
-              <h3 className="text-2xl font-bold mb-4 text-orange-500">Get a life, bro!</h3>
-              <p className="mb-4 text-gray-300">Seriously, go get some sleep. Your code will thank you later.</p>
+              <h3 className="text-xl md:text-2xl font-bold mb-4 text-orange-500">Get a life, bro!</h3>
+              <p className="mb-4 text-gray-300 text-sm md:text-base">Seriously, go get some sleep. Your code will thank you later.</p>
               
               <div className="rounded-lg overflow-hidden mb-4">
                 <img 
@@ -302,13 +303,13 @@ const Team = () => {
                 />
               </div>
               
-              <div className="bg-gray-700 p-3 rounded-lg text-sm text-gray-300 italic">
+              <div className="bg-gray-700 p-3 rounded-lg text-xs md:text-sm text-gray-300 italic">
                 "The best code is written after a good night's sleep, not after the 10th energy drink."
               </div>
               
               <motion.button
                 onClick={() => setShowPopup(false)}
-                className="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full w-full"
+                className="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full w-full text-sm md:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
