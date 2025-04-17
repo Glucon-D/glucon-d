@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCrown, FaGithub, FaTwitter, FaLinkedin, FaLaptopCode } from 'react-icons/fa';
+import { FaCrown, FaGithub, FaTwitter, FaLinkedin, FaLaptopCode, FaGlobe, FaUser } from 'react-icons/fa';
 import { SiDevdotto } from 'react-icons/si';
 
 const Team = () => {
@@ -36,6 +36,7 @@ const Team = () => {
       github: "https://github.com/cyberboyayush",
       twitter: "https://twitter.com/cyberboyayush",
       linkedin: "https://linkedin.com/in/cyberboyayush",
+      portfolio: "https://cyberboyayush.in",
       skills: ["React", "NextJS", "Tailwind", "Procrastination", "Gemini", "Appwrite"]
     },
     {
@@ -47,6 +48,7 @@ const Team = () => {
       github: "https://github.com/vrandaagarg",
       twitter: "https://twitter.com/vrandaagarg",
       linkedin: "https://linkedin.com/in/vrandaagarg",
+      portfolio: "https://vrandagarg.me",
       skills: ["Node.js", "Firebase", "React", "Making coffee"]
     }
   ];
@@ -66,7 +68,6 @@ const Team = () => {
       role: "Frontend Dev & ChatGpt Plus User",
       image: "https://avatars.githubusercontent.com/u/158083556?v=4",
       bio: "Bro uses ChatGPT for everything.",
-      quote: "I asked ChatGPT to write this bio.",
       quote: "AI is just spicy if-else statements.",
       github: "https://github.com/raghavvvgaba",
       skills: ["Python", "React", "TailwindCSS"]
@@ -87,6 +88,7 @@ const Team = () => {
       bio: "Frontend Dev with a passion for memes.",
       quote: "Copilot is my best friend.",
       github: "https://github.com/raghavxkatta",
+      portfolio: "https://raghavkatta.vercel.app/",
       skills: ["React", "Tailwind", "Github"]
     },
   ];
@@ -125,6 +127,17 @@ const Team = () => {
             className="text-gray-400 hover:text-blue-600"
           >
             <FaLinkedin size={20} />
+          </motion.a>
+        )}
+        {member.portfolio && (
+          <motion.a 
+            href={member.portfolio} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.2, rotate: 10 }}
+            className="text-gray-400 hover:text-orange-400"
+          >
+            <FaGlobe size={20} />
           </motion.a>
         )}
         {member.devto && (
