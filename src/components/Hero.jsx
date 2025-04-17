@@ -64,7 +64,7 @@ const Hero = () => {
               className="text-orange-500 text-2xl font-bold mb-3"
               variants={itemVariants}
             >
-              Power up your hackathon game with
+              When coffee fails, reach for
             </motion.h2>
 
             <motion.h1 
@@ -76,7 +76,7 @@ const Hero = () => {
                 animate={floatingAnimation} 
                 className="absolute -top-8 -right-8 text-4xl"
               >
-                💪
+                🥴
               </motion.span>
             </motion.h1>
 
@@ -84,7 +84,7 @@ const Hero = () => {
               className="text-gray-300 text-xl mb-8 max-w-lg"
               variants={itemVariants}
             >
-              We don't just code, we inject <span className="text-orange-400 font-semibold">instant energy</span> into every project! Just like the drink, we revitalize hackathons with our electrifying solutions.
+              We're like that sugar rush at 3 AM – <span className="text-orange-400 font-semibold">unexpectedly effective</span> and slightly concerning! Our code has more electrolytes than your average sports drink and twice the bugs!
             </motion.p>
 
             <motion.div 
@@ -97,7 +97,7 @@ const Hero = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FaRocket /> See Our Projects
+                  <FaRocket /> View Our Happy Accidents
                 </motion.button>
               </Link>
               <Link to="/team">
@@ -106,7 +106,7 @@ const Hero = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FaBolt /> Meet The Team
+                  <FaBolt /> Meet The Sleep-Deprived
                 </motion.button>
               </Link>
             </motion.div>
@@ -123,13 +123,13 @@ const Hero = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
               >
-                <div className="absolute inset-1 bg-gray-900 rounded-full flex items-center justify-center">
-                  <motion.div 
-                    className="text-8xl md:text-9xl"
+                <div className="absolute inset-1 bg-gray-900 rounded-full flex items-center justify-center overflow-hidden">
+                  <motion.img 
+                    src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" 
+                    alt="Funny cat gif" 
+                    className="w-full h-full object-cover"
                     animate={floatingAnimation}
-                  >
-                    ⚡
-                  </motion.div>
+                  />
                 </div>
               </motion.div>
             </div>
@@ -188,7 +188,7 @@ const Hero = () => {
         >
           <div className="flex items-center justify-center gap-2 text-orange-500">
             <FaFire className="text-xl" />
-            <p className="font-semibold text-lg">Turning caffeine into code since 2023</p>
+            <p className="font-semibold text-lg">Converting pizza into bugs since 2025</p>
             <FaFire className="text-xl" />
           </div>
         </motion.div>
