@@ -1,9 +1,11 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaCrown, FaGithub, FaTwitter, FaLinkedin, FaLaptopCode } from 'react-icons/fa';
 import { SiDevdotto } from 'react-icons/si';
 
 const Team = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -147,11 +149,11 @@ const Team = () => {
         variants={itemVariants}
         whileHover={{ y: -5 }}
       >
-        <div className="relative">
+        <div className="relative flex items-center justify-center bg-gray-900 h-64">
           <img 
             src={member.image} 
             alt={member.name} 
-            className="w-full h-64 object-cover object-center"
+            className="h-full w-auto max-h-64"
           />
           {isCore && (
             <div className="absolute top-3 right-3">
@@ -252,6 +254,7 @@ const Team = () => {
             Our interview process includes a meme-creation challenge and a "how long can you stay awake" contest.
           </p>
           <motion.button
+            onClick={() => setShowPopup(true)}
             className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -260,6 +263,61 @@ const Team = () => {
           </motion.button>
         </motion.div>
       </div>
+      
+      {/* Popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div 
+            className="fixed inset-0 flex items-center justify-center z-50 p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div 
+              className="absolute inset-0 bg-black bg-opacity-75"
+              onClick={() => setShowPopup(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            />
+            <motion.div 
+              className="bg-gray-800 rounded-xl p-6 max-w-md w-full relative z-10 border-2 border-orange-500"
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+            >
+              <button 
+                onClick={() => setShowPopup(false)} 
+                className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              >
+                ×
+              </button>
+              <h3 className="text-2xl font-bold mb-4 text-orange-500">Get a life, bro!</h3>
+              <p className="mb-4 text-gray-300">Seriously, go get some sleep. Your code will thank you later.</p>
+              
+              <div className="rounded-lg overflow-hidden mb-4">
+                <img 
+                  src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" 
+                  alt="Sleeping cat meme" 
+                  className="w-full"
+                />
+              </div>
+              
+              <div className="bg-gray-700 p-3 rounded-lg text-sm text-gray-300 italic">
+                "The best code is written after a good night's sleep, not after the 10th energy drink."
+              </div>
+              
+              <motion.button
+                onClick={() => setShowPopup(false)}
+                className="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-full w-full"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Fine, I'll go sleep... maybe
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

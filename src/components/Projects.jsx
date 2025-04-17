@@ -1,82 +1,42 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaMedal, FaCode, FaLaughSquint, FaFilter } from 'react-icons/fa';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaMedal } from 'react-icons/fa';
 
 const Projects = () => {
-  const [filter, setFilter] = useState('all');
-  
   const projects = [
     {
       id: 1,
-      title: "AICodeBuddy",
-      description: "An AI-powered code assistant that helps you debug your code while also roasting your coding style. Because sometimes tough love is what you need.",
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?q=80&w=2070",
-      tags: ["AI", "React", "Node.js"],
-      github: "https://github.com/glucond-team/aicodebuddy",
-      demo: "https://aicodebuddy.demo.glucond.dev",
+      title: "Pathgenie",
+      description: "Ai Powered Carrier Guidance Platform for Underserved Students.",
+      image: "https://github.com/CyberBoyAyush/react-portfolio/blob/main/src/assets/pathgenie.png?raw=true",
+      tags: ["AI", "React", "Node.js", "Appwrite", "Groq", "Llama"],
+      github: "https://github.com/glucon-d/pathgenie",
+      demo: "https://pathgenie.ayush-sharma.in/",
       category: "ai",
-      achievement: "1st Place - CodeFest 2024"
+      achievement: "1st Place - Hackerzstreet Hackathon (IEEE)"
     },
     {
       id: 2,
-      title: "MemeGenerator 3000",
-      description: "The ultimate meme creation platform that uses AI to generate memes based on your mood and the latest internet trends. Perfect for when your code isn't working.",
-      image: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?q=80&w=1973",
-      tags: ["NextJS", "Firebase", "Gemini API"],
-      github: "https://github.com/glucond-team/memegen3000",
-      demo: "https://meme3000.demo.glucond.dev",
+      title: "Finwise",
+      description: "Ai Based Financial Advisor for Beginners.",
+      image: "https://github.com/CyberBoyAyush/react-portfolio/blob/main/src/assets/finwise.png?raw=true",
+      tags: ["React", "Firebase", "Gemini API", "Appwrite", "Grow API"],
+      github: "https://github.com/glucon-d/finwise",
+      demo: "https://finwise.ayush-sharma.in/",
       category: "web",
-      achievement: "Most Creative Project - HackFest 2024"
+      achievement: "8th Positon - Hackaccino (Bennet)"
     },
     {
       id: 3,
-      title: "SnackTracker",
-      description: "An app that tracks the team's snack consumption during hackathons. Includes a dashboard showing the correlation between energy drink intake and bugs fixed.",
-      image: "https://images.unsplash.com/photo-1576021182211-9ea8dced3690?q=80&w=1974",
-      tags: ["React Native", "Firebase", "Charts"],
-      github: "https://github.com/glucond-team/snacktracker",
-      demo: "https://snacktracker.demo.glucond.dev",
-      category: "mobile",
-      achievement: "Runner Up - FoodTech Hackathon"
+      title: "Intellica",
+      description: "Ai Based Learning Platform for Everyone.",
+      image: "https://github.com/CyberBoyAyush/react-portfolio/blob/main/src/assets/intellica.png?raw=true",
+      tags: ["React", "Firebase", "Charts", "Gemini API", "Appwrite"],
+      github: "https://github.com/glucon-d/intellica",
+      demo: "https://intellica.ayush-sharma.in/",
+      category: "ai",
     },
-    {
-      id: 4,
-      title: "BugSquasher",
-      description: "A game where you literally squash bugs in your code. Every time you fix a real bug, you get to play a round of bug squashing. Gamification at its finest!",
-      image: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?q=80&w=2070",
-      tags: ["React", "Phaser.js", "VSCode Extension"],
-      github: "https://github.com/glucond-team/bugsquasher",
-      demo: "https://marketplace.visualstudio.com/items?itemName=glucond.bugsquasher",
-      category: "game",
-      achievement: "Most Entertaining Hack - VSCode Hackathon"
-    },
-    {
-      id: 5,
-      title: "CoffeeRun",
-      description: "An app that calculates whose turn it is to get coffee for the team. Uses complex algorithms based on who's been slacking off the most during the hackathon.",
-      image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1974",
-      tags: ["React", "Appwrite", "Tailwind"],
-      github: "https://github.com/glucond-team/coffeerun",
-      demo: "https://coffeerun.demo.glucond.dev",
-      category: "web",
-      achievement: "Best Team Tool - Internal Hackathon"
-    },
-    {
-      id: 6,
-      title: "SleepDeficit",
-      description: "A smart alarm that tracks your sleep during hackathons and calculates how much caffeine you need to function based on your sleep deficit. Built by sleep-deprived devs.",
-      image: "https://images.unsplash.com/photo-1572715555777-1d08ba884ca6?q=80&w=2067",
-      tags: ["React Native", "Health API", "Machine Learning"],
-      github: "https://github.com/glucond-team/sleepdeficit",
-      demo: "https://apps.apple.com/app/sleepdeficit",
-      category: "mobile",
-      achievement: "Health Innovation Award - MedTech Hackathon"
-    }
   ];
-
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === filter);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -121,39 +81,6 @@ const Projects = () => {
           <p className="text-gray-300 text-lg max-w-3xl mx-auto">
             Check out what we've built during our caffeine-fueled coding sessions!
           </p>
-          
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <CategoryButton 
-              label="All" 
-              icon={<FaFilter />} 
-              active={filter === 'all'} 
-              onClick={() => setFilter('all')}
-            />
-            <CategoryButton 
-              label="Web" 
-              icon={<FaCode />} 
-              active={filter === 'web'} 
-              onClick={() => setFilter('web')}
-            />
-            <CategoryButton 
-              label="Mobile" 
-              icon={<FaCode />} 
-              active={filter === 'mobile'} 
-              onClick={() => setFilter('mobile')}
-            />
-            <CategoryButton 
-              label="AI" 
-              icon={<FaCode />} 
-              active={filter === 'ai'} 
-              onClick={() => setFilter('ai')}
-            />
-            <CategoryButton 
-              label="Games" 
-              icon={<FaLaughSquint />} 
-              active={filter === 'game'} 
-              onClick={() => setFilter('game')}
-            />
-          </div>
         </motion.div>
 
         <motion.div 
@@ -163,11 +90,9 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          <AnimatePresence>
-            {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} variants={projectVariants} />
-            ))}
-          </AnimatePresence>
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} variants={projectVariants} />
+          ))}
         </motion.div>
         
         <motion.div 
@@ -182,24 +107,6 @@ const Projects = () => {
         </motion.div>
       </div>
     </section>
-  );
-};
-
-const CategoryButton = ({ label, icon, active, onClick }) => {
-  return (
-    <motion.button
-      onClick={onClick}
-      className={`px-5 py-2 rounded-full flex items-center gap-2 transition-all ${
-        active 
-          ? 'bg-orange-500 text-white' 
-          : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-      }`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      {icon}
-      {label}
-    </motion.button>
   );
 };
 
