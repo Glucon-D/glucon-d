@@ -180,8 +180,8 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-300 ${
-          scrolled ? "py-3 bg-gray-900/90 shadow-lg" : "py-5 bg-gray-900/70"
+        className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-3xl transition-all duration-300 ${
+          scrolled ? "py-3 bg-gray-900/60 shadow-lg" : "py-5 bg-gray-900/50"
         }`}
         initial="hidden"
         animate="visible"
