@@ -335,20 +335,20 @@ const Footer = () => {
           </motion.p>
           <div className="flex space-x-4">
             <motion.div whileHover={{ scale: 1.05 }}>
-              <Link to="/privacy" className="text-gray-400 hover:text-white">
+              <Link to="#" className="text-gray-400 hover:text-white">
                 Privacy
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.05 }}>
-              <Link to="/terms" className="text-gray-400 hover:text-white">
+              <Link to="#" className="text-gray-400 hover:text-white">
                 Terms
               </Link>
             </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }}>
+            {/* <motion.div whileHover={{ scale: 1.05 }}>
               <Link to="/sitemap" className="text-gray-400 hover:text-white">
                 Sitemap
               </Link>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </div>

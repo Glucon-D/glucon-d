@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaReact,
@@ -17,6 +17,19 @@ import {
 import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if the device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -40,16 +53,17 @@ const Hero = () => {
     },
   };
 
+  // Simpler animation for mobile to prevent flickering
   const floatingAnimation = {
-    y: [0, -10, 0],
+    y: isMobile ? [-5, 5, -5] : [0, -10, 0],
     transition: {
-      duration: 2,
+      duration: isMobile ? 3 : 2,
       repeat: Infinity,
       ease: "easeInOut",
     },
   };
 
-  // Tech icons that will float in the background
+  // Reduced number of tech icons, especially on mobile
   const techIcons = [
     {
       icon: <FaReact />,
@@ -71,6 +85,7 @@ const Hero = () => {
       size: "text-2xl md:text-3xl",
       position: "bottom-[20%] left-[15%]",
       animationDuration: 7,
+      mobileHide: true,
     },
     {
       icon: <SiAppwrite />,
@@ -78,6 +93,7 @@ const Hero = () => {
       size: "text-2xl md:text-3xl",
       position: "bottom-[30%] right-[10%]",
       animationDuration: 9,
+      mobileHide: true,
     },
     {
       icon: <SiFramer />,
@@ -85,89 +101,77 @@ const Hero = () => {
       size: "text-3xl md:text-4xl",
       position: "top-[40%] left-[20%]",
       animationDuration: 10,
-    },
-    {
-      icon: <FaCode />,
-      color: "text-green-400",
-      size: "text-2xl md:text-3xl",
-      position: "top-[45%] right-[20%]",
-      animationDuration: 7.5,
-    },
-    {
-      icon: <FaCoffee />,
-      color: "text-yellow-400",
-      size: "text-2xl md:text-3xl",
-      position: "bottom-[15%] right-[25%]",
-      animationDuration: 8.5,
+      mobileHide: true,
     },
   ];
 
   return (
-    <section className="relative pt-14 md:pt-24 min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 text-white flex items-center justify-center overflow-hidden w-full">
-      {/* Enhanced Background Elements */}
+    <section className="relative pt-14 md:pt-24 min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white flex items-center justify-center overflow-hidden w-full">
+      {/* Simplified Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient Blobs */}
-        <motion.div
-          className="absolute top-[10%] left-[5%] w-48 h-48 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full opacity-10 blur-3xl"
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.1, 0.2, 0.1],
-            rotate: [0, 90, 180, 270, 360],
-          }}
-          transition={{ duration: 15, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-[20%] right-[10%] w-60 h-60 bg-gradient-to-br from-orange-300 to-orange-600 rounded-full opacity-10 blur-3xl"
-          animate={{
-            scale: [1.5, 1, 1.5],
-            opacity: [0.1, 0.15, 0.1],
-            rotate: [360, 270, 180, 90, 0],
-          }}
-          transition={{ duration: 18, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute top-[40%] right-[20%] w-40 h-40 bg-gradient-to-tr from-orange-300 to-orange-400 rounded-full opacity-10 blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.05, 0.1, 0.05],
-            rotate: [0, 180, 0],
-          }}
-          transition={{ duration: 12, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-[40%] left-[15%] w-36 h-36 bg-gradient-to-tl from-orange-500 to-yellow-500 rounded-full opacity-10 blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.08, 0.12, 0.08],
-            rotate: [0, -180, 0],
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
+        {/* Reduced and simplified gradient blobs */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-[10%] left-[5%] w-48 h-48 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full opacity-10 blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.12, 0.1],
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+            <motion.div
+              className="absolute bottom-[20%] right-[10%] w-60 h-60 bg-gradient-to-br from-orange-300 to-orange-600 rounded-full opacity-10 blur-3xl"
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.1, 0.12, 0.1],
+              }}
+              transition={{
+                duration: 14,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          </>
+        )}
 
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMC0zMHY2aDZ2LTZoLTZ6bTAgMTJ2NmgxOHYtNkgzNnptMCAxMnY2aDE4di02SDM2em0wIDEydjZoMTh2LTZIMzZ6bS0xOCAwaDE4di02SDE4djZ6bTAgMTJoMTh2LTZIMTh2NnptMC0xOGgxOHYtNkgxOHY2em0wLTEyaDE4di02SDE4djZ6bTAtMTJoMTh2LTZIMTh2NnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-10"></div>
+        {/* Mobile-optimized blur elements */}
+        {isMobile && (
+          <div className="absolute inset-0">
+            <div className="absolute top-[10%] left-[5%] w-40 h-40 bg-orange-500 rounded-full opacity-10 blur-3xl"></div>
+            <div className="absolute bottom-[20%] right-[10%] w-40 h-40 bg-orange-400 rounded-full opacity-10 blur-3xl"></div>
+          </div>
+        )}
 
-        {/* Floating Tech Icons */}
-        {techIcons.map((tech, index) => (
-          <motion.div
-            key={index}
-            className={`absolute ${tech.position} ${tech.color} ${tech.size} opacity-30 hidden md:block`}
-            animate={{
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              rotate: [0, tech.animationDuration % 2 === 0 ? 360 : -360, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: tech.animationDuration,
-              repeat: Infinity,
-              repeatType: "loop",
-              ease: "easeInOut",
-            }}
-          >
-            {tech.icon}
-          </motion.div>
-        ))}
+        {/* Simplified grid pattern with reduced opacity for mobile */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djZoNnYtNmgtNnptMC0zMHY2aDZ2LTZoLTZ6bTAgMTJ2NmgxOHYtNkgzNnptMCAxMnY2aDE4di02SDM2em0wIDEydjZoMTh2LTZIMzZ6bS0xOCAwaDE4di02SDE4djZ6bTAgMTJoMTh2LTZIMTh2NnptMC0xOGgxOHYtNkgxOHY2em0wLTEyaDE4di02SDE4djZ6bTAtMTJoMTh2LTZIMTh2NnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-[0.03]"></div>
+
+        {/* Floating Tech Icons - only show on desktop */}
+        {!isMobile &&
+          techIcons
+            .filter((tech) => !tech.mobileHide)
+            .map((tech, index) => (
+              <motion.div
+                key={index}
+                className={`absolute ${tech.position} ${tech.color} ${tech.size} opacity-30 hidden md:block`}
+                animate={{
+                  y: [0, index % 2 === 0 ? -15 : -10, 0],
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: tech.animationDuration,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                }}
+              >
+                {tech.icon}
+              </motion.div>
+            ))}
       </div>
 
       <motion.div
@@ -265,66 +269,64 @@ const Hero = () => {
                     className="w-full h-full object-cover object-center scale-125"
                     animate={floatingAnimation}
                     whileHover={{ scale: 1.3, rotate: 5 }}
+                    style={{ willChange: "transform" }} // Performance optimization
                   />
                 </motion.div>
               </motion.div>
 
-              {/* Animated orbital ring */}
-              <motion.div
-                className="absolute inset-[-10px] border-2 border-dashed border-orange-500/30 rounded-full"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
+              {/* Simplified orbital ring with reduced animation complexity */}
+              {!isMobile && (
+                <motion.div
+                  className="absolute inset-[-10px] border-2 border-dashed border-orange-500/30 rounded-full"
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+              )}
+
+              {isMobile && (
+                <div className="absolute inset-[-10px] border-2 border-dashed border-orange-500/30 rounded-full" />
+              )}
             </div>
 
-            {/* Floating tech icons - better positioned for all screens */}
-            <motion.div
-              className="absolute -top-4 sm:-top-5 right-5 sm:right-10 md:right-16 text-lg sm:text-xl md:text-3xl hidden sm:block"
-              animate={{
-                y: [0, -15, 0],
-                rotate: [0, 10, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            >
-              🚀
-            </motion.div>
-            <motion.div
-              className="absolute bottom-5 sm:bottom-10 right-0 text-lg sm:text-xl md:text-3xl hidden sm:block"
-              animate={{
-                y: [0, 10, 0],
-                rotate: [0, -5, 0],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                repeatType: "reverse",
-                delay: 0.5,
-              }}
-            >
-              💻
-            </motion.div>
-            <motion.div
-              className="absolute bottom-10 sm:bottom-16 left-0 sm:left-4 text-lg sm:text-xl md:text-3xl hidden sm:block"
-              animate={{
-                y: [0, 15, 0],
-                rotate: [0, 15, 0],
-                scale: [1, 1.15, 1],
-              }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                repeatType: "reverse",
-                delay: 1,
-              }}
-            >
-              🏆
-            </motion.div>
+            {/* Reduce number of floating elements on mobile */}
+            {!isMobile && (
+              <>
+                <motion.div
+                  className="absolute -top-4 sm:-top-5 right-5 sm:right-10 md:right-16 text-lg sm:text-xl md:text-3xl hidden sm:block"
+                  animate={{
+                    y: [0, -10, 0],
+                    rotate: [0, 5, 0],
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                >
+                  🚀
+                </motion.div>
+                <motion.div
+                  className="absolute bottom-5 sm:bottom-10 right-0 text-lg sm:text-xl md:text-3xl hidden sm:block"
+                  animate={{
+                    y: [0, 8, 0],
+                    rotate: [0, -3, 0],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 3.5,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                >
+                  💻
+                </motion.div>
+              </>
+            )}
           </motion.div>
         </div>
 
@@ -333,7 +335,7 @@ const Hero = () => {
           variants={itemVariants}
         >
           <motion.div
-            className=" items-center justify-center gap-1 sm:gap-2 bg-gradient-to-r from-orange-500/10 via-orange-400/20 to-orange-500/10 backdrop-blur-sm py-2 px-4 rounded-full inline-flex mx-auto"
+            className="items-center justify-center gap-1 sm:gap-2 bg-gradient-to-r from-orange-500/10 via-orange-400/20 to-orange-500/10 backdrop-blur-sm py-2 px-4 rounded-full inline-flex mx-auto"
             whileHover={{ scale: 1.05, y: -5 }}
           >
             <FaFire className="text-sm sm:text-lg md:text-xl text-orange-500" />
